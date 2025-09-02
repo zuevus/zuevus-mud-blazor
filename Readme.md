@@ -120,7 +120,7 @@ ZuevUS.Mud/
 ### Для релиза
 ```bash
 git tag release_v1.0.0
-git push release_v1.0.0
+git push origin release_v1.0.0
 ```
 ## 👨‍💻 Разработчик
 Юрий Зуев - Fullstack .NET разработчик
