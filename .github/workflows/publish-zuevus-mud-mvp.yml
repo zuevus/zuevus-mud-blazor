@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: hexaflow-202501-dev
+    runs-on: zuevus-runner
     steps:
       - name: Stop and remove old container
         run: |
@@ -23,7 +23,7 @@ jobs:
           docker images
 
   deploy:
-    runs-on: hexaflow-202501-dev
+    runs-on: zuevus-runner
     environment: production
     needs: build
     steps:
