@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option csharp_namespace = "ZuevUS.Mud.Services.Protos";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+// Common Enums
+enum OrderType {
+  WEBSITE_DEVELOPMENT = 0;
+  MOBILE_APP = 1;
+  API_DEVELOPMENT = 2;
+  DATABASE_DESIGN = 3;
+  SYSTEM_MAINTENANCE = 4;
+  BUG_FIXING = 5;
+  CONSULTATION = 6;
+}
+
+enum OrderStatus {
+  NEW = 0;
+  IN_PROGRESS = 1;
+  COMPLETED = 2;
+  CANCELLED = 3;
+}
+
+enum UserRole {
+  ADMIN = 0;
+  USER = 1;
+}
+
+// Common Messages
+message Empty {}
+
+message IdRequest {
+  int32 id = 1;
+}
+
+message UserIdRequest {
+  string user_id = 1;
+}
+
+message SuccessResponse {
+  bool success = 1;
+  string message = 2;
+}

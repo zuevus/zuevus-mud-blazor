@@ -1,0 +1,38 @@
+name: Publish MVP of ZuevUS Mud Blazor Portfolio
+
+on:
+  push:
+    tags:
+      - 'release_v*.*.*'
+
+jobs:
+  build:
+    runs-on: hexaflow-202501-dev
+    steps:
+      - name: Stop and remove old container
+        run: |
+          docker compose -f docker-compose-production.yml down || true
+          docker network prune -f || true
+
+      - uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: |
+          echo "Building Docker Compose..."
+          docker compose -f docker-compose-production.yml build
+          docker images
+
+  deploy:
+    runs-on: hexaflow-202501-dev
+    environment: production
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy using docker compose
+        run: |
+          echo "Deploying new container..."
+          docker compose -f docker-compose-production.yml up -d
+          
+          echo "Container deployed successfully"
+          docker ps -a

@@ -1,0 +1,43 @@
+﻿@page "/login"
+@using MudBlazor
+
+@inject NavigationManager Navigation
+@inject CustomAuthStateProvider AuthProvider
+
+<MudPaper Class="d-flex flex-column align-center justify-center p-6 mx-auto mt-12" Style="max-width:400px;">
+    <MudText Typo="Typo.h5" Class="mb-4">Login</MudText>
+
+    <MudTextField @bind-Value="Username" Label="Username" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AccountCircle" />
+    <MudTextField @bind-Value="Password" Label="Password" InputType="InputType.Password" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Lock" />
+
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Login" Class="mt-4" StartIcon="@Icons.Material.Filled.Login">
+        Login
+    </MudButton>
+
+    @if (!string.IsNullOrEmpty(ErrorMessage))
+    {
+        <MudText Color="Color.Error" Class="mt-2">@ErrorMessage</MudText>
+    }
+</MudPaper>
+
+@code {
+    private string Username { get; set; }
+    private string Password { get; set; }
+    private string ErrorMessage { get; set; }
+
+    private async Task Login()
+    {
+        ErrorMessage = string.Empty;
+
+        // TODO: Replace with real OpenID / JWT auth call
+        if (Username == "admin" && Password == "password")
+        {
+            AuthProvider.MarkUserAsAuthenticated(Username, "Admin");
+            Navigation.NavigateTo("/");
+        }
+        else
+        {
+            ErrorMessage = "Invalid username or password.";
+        }
+    }
+}

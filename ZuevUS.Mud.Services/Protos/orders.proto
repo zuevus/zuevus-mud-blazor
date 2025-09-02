@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+option csharp_namespace = "ZuevUS.Mud.Services.Protos";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "Protos/lib.proto";
+
+service Orders {
+  rpc CreateOrder (CreateOrderRequest) returns (OrderResponse);
+  rpc GetOrders (GetOrdersRequest) returns (OrdersResponse);
+  rpc GetOrderById (GetOrderByIdRequest) returns (OrderResponse);
+  rpc UpdateOrder (UpdateOrderRequest) returns (OrderResponse);
+  rpc DeleteOrder (DeleteOrderRequest) returns (DeleteOrderResponse);
+}
+
+message CreateOrderRequest {
+  string title = 1;
+  string description = 2;
+  OrderType type = 3;
+  double price = 4;
+  google.protobuf.Timestamp deadline = 5;
+  string client_name = 6;
+  string client_email = 7;
+  string user_id = 8;
+}
+
+message GetOrdersRequest {
+  string user_id = 1;
+  UserRole user_role = 2;
+}
+
+message GetOrderByIdRequest {
+  int32 id = 1;
+}
+
+message UpdateOrderRequest {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  OrderType type = 4;
+  OrderStatus status = 5;
+  double price = 6;
+  google.protobuf.Timestamp deadline = 7;
+}
+
+message DeleteOrderRequest {
+  int32 id = 1;
+}
+
+message OrderResponse {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  OrderType type = 4;
+  OrderStatus status = 5;
+  double price = 6;
+  google.protobuf.Timestamp created_date = 7;
+  google.protobuf.Timestamp deadline = 8;
+  string client_name = 9;
+  string client_email = 10;
+  string user_id = 11;
+}
+
+message OrdersResponse {
+  repeated OrderResponse orders = 1;
+}
+
+message DeleteOrderResponse {
+  bool success = 1;
+}

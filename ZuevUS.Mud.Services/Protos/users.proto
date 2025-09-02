@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option csharp_namespace = "ZuevUS.Mud.Services.Protos";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "Protos/lib.proto";
+
+service Users {
+  rpc GetUserProfile (GetUserRequest) returns (UserResponse);
+  rpc CreateUserProfile (CreateUserRequest) returns (UserResponse);
+  rpc UpdateUserProfile (UpdateUserRequest) returns (UserResponse);
+  rpc DeleteUserProfile (DeleteUserRequest) returns (DeleteUserResponse);
+  rpc GetUsers (GetUsersRequest) returns (UsersResponse);
+}
+
+message GetUserRequest {
+  string user_id = 1;
+}
+
+message CreateUserRequest {
+  string user_id = 1;
+  string user_name = 2;
+  string email = 3;
+  UserRole role = 4;
+}
+
+message UpdateUserRequest {
+  string user_id = 1;
+  string user_name = 2;
+  string email = 3;
+  UserRole role = 4;
+}
+
+message DeleteUserRequest {
+  string user_id = 1;
+}
+
+message GetUsersRequest {
+  UserRole filter_role = 1;
+}
+
+message UserResponse {
+  string user_id = 1;
+  string user_name = 2;
+  string email = 3;
+  UserRole role = 4;
+  google.protobuf.Timestamp created_date = 5;
+  google.protobuf.Timestamp last_login_date = 6;
+}
+
+message UsersResponse {
+  repeated UserResponse users = 1;
+}
+
+message DeleteUserResponse {
+  bool success = 1;
+}
