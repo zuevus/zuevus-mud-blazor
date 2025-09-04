@@ -1,6 +1,132 @@
-﻿<MudText Typo="Typo.body1" Class="mt-4">
-    Здесь вы можете описать основные цели проекта, его назначение и ключевые преимущества.
-</MudText>
+﻿<MudContainer MaxWidth="MaxWidth.Large" Class="my-8">
+    
+    
+    <MudText Typo="Typo.h2">
+        ZuevUS.Mud - Современное Blazor приложение
+    </MudText>
+
+    <MudText Typo="Typo.body1" Class="mt-4">
+        Презентационное веб-приложение, демонстрирующее мощь современного .NET стека
+    </MudText>
+
+    <MudDivider Class="my-6" />
+
+    <MudGrid>
+        <MudItem xs="12" md="6">
+            <MudCard>
+                <MudCardHeader>
+                    <MudText Typo="Typo.h6">Архитектура</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudPaper Width="300px">
+                        <MudList T="string">
+                            <MudListItem Icon="@Icons.Material.Filled.Layers" Text="Blazor WebAssembly - SPA на .NET" />
+                            <MudListItem Icon="@Icons.Material.Filled.Storage" Text="gRPC микросервисы" />
+                            <MudListItem Icon="@Icons.Material.Filled.DataArray" Text="Entity Framework + SQLite" />
+                            <MudListItem Icon="@Icons.Material.Filled.Security" Text="JWT аутентификация" />
+                        </MudList>
+                    </MudPaper>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+
+        <MudItem xs="12" md="6">
+            <MudCard>
+                <MudCardHeader>
+                    <MudText Typo="Typo.h6">Цели проекта</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTimeline>
+                        <MudTimelineItem Color="Color.Primary">
+                            <MudText>Демонстрация современных технологий .NET</MudText>
+                        </MudTimelineItem>
+                        <MudTimelineItem Color="Color.Secondary">
+                            <MudText>Реализация full-stack приложения</MudText>
+                        </MudTimelineItem>
+                        <MudTimelineItem Color="Color.Tertiary">
+                            <MudText>Создание портфолио проекта</MudText>
+                        </MudTimelineItem>
+                    </MudTimeline>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+
+    <MudDivider Class="my-6" />
+
+    <MudText Typo="Typo.h5" Class="mt-6" Color="Color.Secondary">
+        Технологический стек
+    </MudText>
+
+    <MudGrid Class="mt-4">
+        <MudItem xs="6" sm="4" md="2">
+            <MudPaper Class="text-center pa-4" Elevation="8">
+                <MudIcon Icon="@Icons.Material.Filled.Web" Size="Size.Large" Color="Color.Primary" />
+                <MudText Typo="Typo.body2" Class="mt-2">Blazor WASM</MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="4" md="2">
+            <MudPaper Class="text-center pa-4" Elevation="8">
+                <MudIcon Icon="@Icons.Material.Filled.Palette" Size="Size.Large" Color="Color.Secondary" />
+                <MudText Typo="Typo.body2" Class="mt-2">MudBlazor</MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="4" md="2">
+            <MudPaper Class="text-center pa-4" Elevation="8">
+                <MudIcon Icon="@Icons.Material.Filled.Link" Size="Size.Large" Color="Color.Tertiary" />
+                <MudText Typo="Typo.body2" Class="mt-2">gRPC</MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="4" md="2">
+            <MudPaper Class="text-center pa-4" Elevation="8">
+                <MudIcon Icon="@Icons.Material.Filled.Storage" Size="Size.Large" Color="Color.Info" />
+                <MudText Typo="Typo.body2" Class="mt-2">SQLite</MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="4" md="2">
+            <MudPaper Class="text-center pa-4" Elevation="8">
+                <MudIcon Icon="@Icons.Material.Filled.Security" Size="Size.Large" Color="Color.Success" />
+                <MudText Typo="Typo.body2" Class="mt-2">JWT</MudText>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="4" md="2">
+            <MudPaper Class="text-center pa-4" Elevation="8">
+                <MudIcon Icon="@Icons.Material.Filled.BugReport" Size="Size.Large" Color="Color.Warning" />
+                <MudText Typo="Typo.body2" Class="mt-2">NUnit</MudText>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+
+    <MudDivider Class="my-6" />
+
+    <MudText Typo="Typo.h5" Class="mt-6" Color="Color.Tertiary">
+        Ключевые возможности
+    </MudText>
+
+    <MudExpansionPanels Class="mt-4">
+        <MudExpansionPanel Text="🔐 Безопасная аутентификация">
+            <MudText>OIDC</MudText>
+        </MudExpansionPanel>
+        <MudExpansionPanel Text="⚡ Высокая производительность">
+            <MudText>gRPC для быстрой коммуникации между сервисами</MudText>
+        </MudExpansionPanel>
+        <MudExpansionPanel Text="🎨 Современный UI">
+            <MudText>Material Design с MudBlazor компонентами</MudText>
+        </MudExpansionPanel>
+        <MudExpansionPanel Text="🧪 Полное тестирование">
+            <MudText>Unit и интеграционные тесты с Moq и NUnit</MudText>
+        </MudExpansionPanel>
+    </MudExpansionPanels>
+
+    <MudButton Variant="Variant.Filled" 
+               Color="Color.Primary" 
+               EndIcon="@Icons.Material.Filled.Train" 
+               Class="mt-4"
+               Href="https://github.com/zuevus/zuevus-mud-blazor">
+        Исходный код на GitHub
+    </MudButton>
+
+</MudContainer>
 
 @code {
 
