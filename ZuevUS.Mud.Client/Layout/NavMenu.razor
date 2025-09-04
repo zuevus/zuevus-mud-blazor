@@ -1,9 +1,13 @@
 ﻿
 <MudNavMenu>
-    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-    <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Counter</MudNavLink>
+    <MudNavGroup Title="Главная" Expanded="true" Icon="@Icons.Material.Filled.Home">
+        <MudNavLink Href="/aboutus" Icon="@Icons.Material.Filled.BusinessCenter">О проекте</MudNavLink>
+        <MudNavLink Href="/political-risks" Icon="@Icons.Material.Filled.FactCheck">Политические риски</MudNavLink>
+    </MudNavGroup>
     
-    <MudNavLink Href="weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Weather</MudNavLink>
+ @*    <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Счётчик</MudNavLink>
+    
+    <MudNavLink Href="weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Weather</MudNavLink> *@
 
 </MudNavMenu>
 

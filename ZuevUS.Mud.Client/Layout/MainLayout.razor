@@ -9,6 +9,23 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
         <MudSpacer />
+        <MudStack Row="true" AlignItems="AlignItems.Center" Spacing="2" Class="mr-4">
+            <MudTooltip Text="Текущие посетители">
+                <MudIcon Icon="@Icons.Material.Filled.Person" Color="Color.Info" />
+            </MudTooltip>
+            <MudText Typo="Typo.body2">@CurrentVisitors</MudText>
+
+            <MudTooltip Text="Зарегистрированные пользователи">
+                <MudIcon Icon="@Icons.Material.Filled.PeopleAlt" Color="Color.Success" Class="ml-4" />
+            </MudTooltip>
+            <MudText Typo="Typo.body2">@RegisteredUsers</MudText>
+
+            <MudTooltip Text="Всего посещений за всё время">
+                <MudIcon Icon="@Icons.Material.Filled.BarChart" Color="Color.Warning" Class="ml-4" />
+            </MudTooltip>
+            <MudText Typo="Typo.body2">@TotalVisitors</MudText>
+        </MudStack>
+        <MudSpacer />
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
         <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
     </MudAppBar>
@@ -29,8 +46,12 @@
 
 @code {
     private bool _drawerOpen = true;
-    private bool _isDarkMode = true;
+    private bool _isDarkMode = false;
     private MudTheme? _theme = null;
+
+    private int CurrentVisitors = 15;
+    private int RegisteredUsers = 1234;
+    private int TotalVisitors = 54321;
 
     protected override void OnInitialized()
     {

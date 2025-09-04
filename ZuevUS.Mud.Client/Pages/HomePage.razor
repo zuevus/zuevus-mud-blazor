@@ -1,0 +1,100 @@
+﻿@page "/"
+@using ZuevUS.Mud.Client.Components
+@inject IJSRuntime JS
+
+<PageTitle>Главная</PageTitle>
+
+<MudBreadcrumbs Items="_items"></MudBreadcrumbs>
+
+@* <MudPaper Class="p-2 mb-4" Elevation="1">
+    <MudStack Row="true" Justify="Justify.Center" Spacing="3">
+        <MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="@(() => ScrollToSection(" about"))">
+            О проекте
+        </MudButton>
+        <MudButton Variant="Variant.Outlined" Color="Color.Secondary" OnClick="@(() => ScrollToSection(" velocity"))">
+            Скорость и стоимость разработки
+        </MudButton>
+        <MudButton Variant="Variant.Outlined" Color="Color.Secondary" OnClick="@(() => ScrollToSection(" why"))">
+            Почему MudBlazor и где его применять
+        </MudButton>
+
+        <MudLink Href="/one">Count and go</MudLink>
+    </MudStack>
+</MudPaper> *@
+<MudStack>
+<MudCard>
+    <MudText Typo="Typo.h5" Class="mb-2">
+        О проекте
+    </MudText>
+    <AboutComponent />
+</MudCard>
+<MudCard>
+    <MudText Typo="Typo.h5" Class="mb-2">
+        Скорость и стоимость разработки
+    </MudText>
+    <VelocityAndPriceComponent />
+</MudCard>
+<MudCard>
+    <MudText Typo="Typo.h5" Class="mb-2">
+        Почему MudBlazor и где его применять
+    </MudText>
+    <WhyMudBlazorComponent />
+</MudCard>
+</MudStack>
+
+
+@if (showFab)
+{
+    <MudFab Icon="@Icons.Material.Filled.ArrowUpward"
+            Color="Color.Primary"
+            Size="Size.Large"
+            Style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; transition: opacity 0.3s ease-in-out;"
+            OnClick="@ScrollToTop" />
+}
+
+@code {
+    private bool showFab = false;
+    private DotNetObjectReference<HomePage>? objRef;
+
+    private List<BreadcrumbItem> _items =
+[
+    new("Главная", href: "#",  icon: Icons.Material.Filled.Home),
+     
+];
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            objRef = DotNetObjectReference.Create(this);
+            await JS.InvokeVoidAsync("scrollHelper.initialize", objRef);
+        }
+    }
+
+    [JSInvokable]
+    public void OnScroll(int scrollY)
+    {
+        bool shouldShow = scrollY > 200; // показываем, если скролл больше 200px
+        if (showFab != shouldShow)
+        {
+            showFab = shouldShow;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ScrollToTop()
+    {
+        await JS.InvokeVoidAsync("window.scrollTo", 0, 0);
+    }
+
+    private async Task ScrollToSection(string sectionId)
+    {
+        await JS.InvokeVoidAsync("document.getElementById(sectionId).scrollIntoView", new { behavior = "smooth" });
+    }
+
+    public void Dispose()
+    {
+        objRef?.Dispose();
+    }
+}
